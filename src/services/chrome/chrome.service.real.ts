@@ -1,5 +1,25 @@
 import ChromeService from './chrome.service';
 
+export interface ChromeServiceSetCookieDto {
+  url: string
+  name: string
+  value: string
+}
+
+export interface ChromeServiceGetCookieDto {
+  url: string
+  name: string
+}
+
+export interface ChromeServiceSetLocalStorageDto {
+  name: string
+  value: string
+}
+
+export interface ChromeServiceGetLocalStorageDto {
+  name: string
+}
+
 export class ChromeServiceReal extends ChromeService {
 
   constructor(
@@ -8,11 +28,11 @@ export class ChromeServiceReal extends ChromeService {
     super();
   }
 
-  setCookie(dto: any) {
-    this.chrome.cookies.set({ url: "https://kalydian.xefi.fr/", name: dto.name, value: dto.value });
+  setCookie(dto: ChromeServiceSetCookieDto) {
+    this.chrome.cookies.set(dto);
   }
 
-  private chromeRuntimeGetCookie = (dto: any): Promise<string> => {
+  private chromeRuntimeGetCookie = (dto: ChromeServiceGetCookieDto): Promise<string> => {
     return new Promise ((resolve, reject) => {
       try {
         this.chrome.cookies.get(dto, resolve);
@@ -22,7 +42,19 @@ export class ChromeServiceReal extends ChromeService {
     })
   }
   
-  getCookie(dto: any): Promise<string> {
-    return this.chromeRuntimeGetCookie({url: "https://kalydian.xefi.fr/", name: dto.name});
+  getCookie(dto: ChromeServiceGetCookieDto): Promise<string> {
+    return this.chromeRuntimeGetCookie(dto);
+  }
+
+  setLocalStorage(dto: ChromeServiceSetLocalStorageDto) {
+    const data = {
+      [dto.name]: dto.value
+    };
+    chrome.storage.local.set(data);
+    return Promise.resolve();
+  }
+  
+  async getLocalStorage(dto: ChromeServiceGetLocalStorageDto): Promise<any> {
+    return chrome.storage.local.get([dto.name]);
   }
 }

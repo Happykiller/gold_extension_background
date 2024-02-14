@@ -1,4 +1,5 @@
 export interface AuthUsecaseModel {
   message: string,
-  sessionId: string
+  data?: string,
+  error?: string
 }

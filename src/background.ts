@@ -2,7 +2,6 @@ import { ORDERS } from './common/orders';
 import { Inversify } from './common/inversify';
 import { AuthUsecase } from './usecases/auth.usecase';
 import { HelloUsecase } from './usecases/hello.usescase';
-import { GetSessionUsecase } from './usecases/getSession.usescase';
 import { GetSystemInfosUsecase } from './usecases/getSystemInfos.usescase';
 
 async function bootstrap() {
@@ -18,13 +17,6 @@ async function bootstrap() {
       }
     },
     {
-      name: ORDERS.GET_SESSION,
-      action: async () => {
-        const getSessionUsecase: GetSessionUsecase = new GetSessionUsecase(inversify);
-        return await getSessionUsecase.execute();
-      }
-    },
-    {
       name: ORDERS.AUTH,
       action: async (data: any) => {
         const authUsecase: AuthUsecase = new AuthUsecase(inversify);
@@ -34,7 +26,7 @@ async function bootstrap() {
     {
       name: ORDERS.HELLO,
       action: async (data: any) => {
-        const helloUsecase: HelloUsecase = new HelloUsecase();
+        const helloUsecase: HelloUsecase = new HelloUsecase(inversify);
         return await helloUsecase.execute(data);
       }
     },

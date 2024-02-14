@@ -1,5 +1,7 @@
 export class Configuration {
 
+  public mode?: string;
+
   public ext?: {
     id?: string;
   }

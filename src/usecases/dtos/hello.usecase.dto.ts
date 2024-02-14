@@ -1,3 +1,4 @@
 export interface HelloUsecaseDto {
-  name: string
+  name: string,
+  error?: string
 }

@@ -1,3 +1,4 @@
 export interface HelloUsecaseModel {
-  data: string
+  data?: string,
+  error?: string
 }

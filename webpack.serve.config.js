@@ -15,6 +15,12 @@ module.exports = (env) => {
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
+      alias: {
+        '@src': path.resolve(__dirname, 'src/'),
+        '@usecase': path.resolve(__dirname, 'src/usecases/'),
+        '@service': path.resolve(__dirname, 'src/services/'),
+        '@repository': path.resolve(__dirname, 'src/repositorys/'),
+      },
     },
     output: {
       filename: 'background.js',

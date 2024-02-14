@@ -14,4 +14,15 @@ export class ChromeServiceBrowser extends ChromeService {
     }
     return Promise.resolve(response);
   }
+
+  setLocalStorage(dto: any): Promise<void> {
+    window.localStorage.setItem(dto.name, JSON.stringify(dto.value));
+    return Promise.resolve();
+  }
+  
+  getLocalStorage(dto: any): Promise<any> {
+    const value = window.localStorage.getItem(dto.name);
+    const response = value?JSON.parse(value):null;
+    return Promise.resolve(response);
+  }
 }

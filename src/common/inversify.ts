@@ -8,6 +8,7 @@ import { WorkerServiceMock } from '../services/worker/worker.service.mock';
 import { ChromeServiceReal } from '../services/chrome/chrome.service.real';
 import { WorkerServiceChrome } from '../services/worker/worker.service.chrome';
 import { ChromeServiceBrowser } from '../services/chrome/chrome.service.browser';
+import { config } from '@src/config';
 
 export class Inversify {
 
@@ -18,12 +19,12 @@ export class Inversify {
 
   constructor() {
     this.otherRepository = new OtherRepository();
-
-    if (process.env.app_mode === 'real') {
+    
+    if (config.mode === 'real') {
       this.chromeService = new ChromeServiceReal(chrome);
       this.workerService = new WorkerServiceChrome(chrome);
       this.ajaxService = new AjaxServiceReal(this);
-    } else if (process.env.app_mode === 'axios') {
+    } else if (config.mode === 'axios') {
       this.chromeService = new ChromeServiceBrowser();
       this.workerService = new WorkerServiceMock();
       this.ajaxService = new AjaxServiceReal(this);
