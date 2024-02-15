@@ -26,11 +26,11 @@ export class Inversify {
       this.ajaxService = new AjaxServiceReal(this);
     } else if (config.mode === 'axios') {
       this.chromeService = new ChromeServiceBrowser();
-      this.workerService = new WorkerServiceMock();
+      this.workerService = new WorkerServiceMock(this);
       this.ajaxService = new AjaxServiceReal(this);
     } else {
       this.chromeService = new ChromeServiceBrowser();
-      this.workerService = new WorkerServiceMock();
+      this.workerService = new WorkerServiceMock(this);
       this.ajaxService = new AjaxServiceFake();
     }
     

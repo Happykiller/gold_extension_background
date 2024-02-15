@@ -20,6 +20,7 @@ module.exports = (env) => {
         '@usecase': path.resolve(__dirname, 'src/usecases/'),
         '@service': path.resolve(__dirname, 'src/services/'),
         '@repository': path.resolve(__dirname, 'src/repositorys/'),
+        '@presentation': path.resolve(__dirname, 'src/presentation/'),
       },
     },
     output: {

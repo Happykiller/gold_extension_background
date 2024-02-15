@@ -14,7 +14,7 @@ describe('AuthUsecase', () => {
 
   mockInversify.ajaxService = mockAjaxService;
   mockInversify.otherRepository = {
-    sessionId: ''
+    accessToken: ''
   };
   mockInversify.chromeService = mockChromeService;
 

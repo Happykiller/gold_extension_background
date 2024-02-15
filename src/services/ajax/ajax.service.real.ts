@@ -1,5 +1,6 @@
 import { config } from '@src/config';
 import { Inversify } from '@src/common/inversify';
+import { ChromeServiceGetCookieModel } from '../chrome/chrome.service.real';
 
 export class AjaxServiceReal {
 
@@ -8,18 +9,28 @@ export class AjaxServiceReal {
   ){}
 
   async post(url:string, datas: any): Promise<any> {
-    const response = await fetch(config.server?.url + url, {
-      method: 'POST',
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'include', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(datas)
-    });
+    try {
+      const accessToken:ChromeServiceGetCookieModel = await this.inversify.chromeService.getCookie({
+        url: 'https://api.gold.happykiller.net/',
+        name: 'accessToken'
+      });
 
-    return response.json();
+      const response = await fetch(config.server?.url + url, {
+        method: 'POST',
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'include', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken.value}`
+        },
+        body: JSON.stringify(datas)
+      });
+  
+      return response.json();
+    } catch(e:any) {
+      console.log(e.message);
+    }
   }
 
   async get(url:string, datas: any): Promise<any> {

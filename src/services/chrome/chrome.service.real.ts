@@ -20,6 +20,19 @@ export interface ChromeServiceGetLocalStorageDto {
   name: string
 }
 
+export interface ChromeServiceGetCookieModel {
+  domain: string
+  hostOnly: boolean
+  httpOnly: boolean
+  name: string
+  path: string
+  sameSite: string
+  secure: boolean
+  session: boolean
+  storeId: string
+  value: string
+}
+
 export class ChromeServiceReal extends ChromeService {
 
   constructor(
@@ -32,7 +45,7 @@ export class ChromeServiceReal extends ChromeService {
     this.chrome.cookies.set(dto);
   }
 
-  private chromeRuntimeGetCookie = (dto: ChromeServiceGetCookieDto): Promise<string> => {
+  private chromeRuntimeGetCookie = (dto: ChromeServiceGetCookieDto): Promise<ChromeServiceGetCookieModel> => {
     return new Promise ((resolve, reject) => {
       try {
         this.chrome.cookies.get(dto, resolve);
@@ -42,7 +55,7 @@ export class ChromeServiceReal extends ChromeService {
     })
   }
   
-  getCookie(dto: ChromeServiceGetCookieDto): Promise<string> {
+  getCookie(dto: ChromeServiceGetCookieDto): Promise<ChromeServiceGetCookieModel> {
     return this.chromeRuntimeGetCookie(dto);
   }
 

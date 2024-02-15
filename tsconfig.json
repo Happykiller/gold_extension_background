@@ -35,7 +35,8 @@
       "@src/*": ["src/*"],
       "@usecase/*": ["src/usecases/*"],
       "@service/*": ["src/services/*"],
-      "@repository/*": ["src/repository/*"]
+      "@repository/*": ["src/repository/*"],
+      "@presentation/*": ["src/presentation/*"]
     },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */

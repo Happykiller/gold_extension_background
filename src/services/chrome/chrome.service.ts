@@ -1,6 +1,8 @@
+import { ChromeServiceGetCookieDto, ChromeServiceGetCookieModel, ChromeServiceGetLocalStorageDto, ChromeServiceSetCookieDto, ChromeServiceSetLocalStorageDto } from "./chrome.service.real";
+
 export default abstract class ChromeService {
-  abstract setCookie(dto: any): void;
-  abstract getCookie(dto: any): Promise<string>;
-  abstract setLocalStorage(dto: any): Promise<void>;
-  abstract getLocalStorage(dto: any): Promise<any>;
+  abstract setCookie(dto: ChromeServiceSetCookieDto): void;
+  abstract getCookie(dto: ChromeServiceGetCookieDto): Promise<ChromeServiceGetCookieModel>;
+  abstract setLocalStorage(dto: ChromeServiceSetLocalStorageDto): Promise<void>;
+  abstract getLocalStorage(dto: ChromeServiceGetLocalStorageDto): Promise<any>;
 }

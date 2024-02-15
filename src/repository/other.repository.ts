@@ -1,3 +1,3 @@
 export class OtherRepository {
-  sessionId: string = '';
+  accessToken: string = '';
 }

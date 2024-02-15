@@ -1,8 +1,11 @@
+import inversify, { Inversify } from '@src/common/inversify';
 import { config } from '../../config';
 
 export class WorkerServiceMock {
 
-  constructor(){
+  constructor(
+    private inversify:Inversify
+  ){
     config.ext = {
       id: '007'
     };
@@ -10,11 +13,27 @@ export class WorkerServiceMock {
 
   async start(binding: Array<any>) {
     const search = window.location.search.slice(1);
-    const order = search.split('=')[0];
+  
+    /**
+     * Order
+     */
+    const orderString = search.split('&')[0];
+    const order = orderString.split('=')[0];
     let params = null;
-    if (search.split('=').length > 1) {
-      params = decodeURIComponent( search.split('=')[1] );
+    if (orderString.split('=').length > 1) {
+      params = decodeURIComponent( orderString.split('=')[1] );
       params = JSON.parse(params);
+    }
+
+    /**
+     * AccessToken
+     */
+    try {
+      const accessTokenString = search.split('&')[1];
+      const accessToken = accessTokenString.split('=')[1];
+      this.inversify.otherRepository.accessToken = accessToken;
+    } catch(e) {
+      console.log('Error with access token');
     }
   
     const elt = window.document.getElementById("app") || {
