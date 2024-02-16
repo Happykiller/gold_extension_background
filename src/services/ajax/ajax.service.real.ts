@@ -1,6 +1,6 @@
 import { config } from '@src/config';
 import { Inversify } from '@src/common/inversify';
-import { ChromeServiceGetCookieModel } from '../chrome/chrome.service.real';
+import { ChromeServiceGetCookieModel } from '@service/chrome/chrome.service.real';
 
 export class AjaxServiceReal {
 
@@ -22,7 +22,7 @@ export class AjaxServiceReal {
         credentials: 'include', // include, *same-origin, omit
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken.value}`
+          'Authorization': `Bearer ${accessToken?.value??'Token'}`
         },
         body: JSON.stringify(datas)
       });

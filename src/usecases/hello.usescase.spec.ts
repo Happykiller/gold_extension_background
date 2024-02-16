@@ -1,8 +1,8 @@
 import { describe, expect, it } from '@jest/globals';
 import { mock, MockProxy } from 'jest-mock-extended';
 
-import { HelloUsecase } from './hello.usescase';
-import { Inversify } from '../common/inversify';
+import { HelloUsecase } from '@usecase/hello.usescase';
+import { Inversify } from '@src/common/inversify';
 
 describe('GetSessionUsecase', () => {
   const mockInversify: MockProxy<Inversify> = mock<Inversify>();

@@ -8,10 +8,6 @@ export class HelloUsecase {
   ){}
 
   async execute(dto: any): Promise<HelloUsecaseModel>  {
-    const localstore = await this.inversify.chromeService.getLocalStorage({
-      name: 'gold-storage'
-    });
-    console.log('localstore', localstore);
     return {
       data: `hello ${dto.name} from the background!`
     };

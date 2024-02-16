@@ -11,12 +11,19 @@ export class CreateOperationUsecase {
 
   async execute(dto: CreateOperationUsecaseDto): Promise<OrderResultModel>  {
     try {
+      const graphqlDto:any = {
+        ...dto,
+        account_id_dest: dto.account_dest_id
+      };
+      delete graphqlDto.account_dest_id;
+
       const response:any = await this.inversify.ajaxService.post('graphql', 
         {
           operationName: 'createOperation',
-          variables: dto,
+          variables: graphqlDto,
           query: `mutation createOperation(
             $account_id: Int!
+            $account_id_dest: Int
             $amount: Float!
             $date: String!
             $status_id: Int!
@@ -28,6 +35,7 @@ export class CreateOperationUsecase {
             createOperation (
               dto: {
                 account_id: $account_id
+                account_id_dest: $account_id_dest
                 amount: $amount
                 date: $date
                 status_id: $status_id
