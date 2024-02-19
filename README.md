@@ -35,3 +35,6 @@ The background part of the extension for the service Gold
 
 * `http://localhost:4242/?createOperation={"amount":42.42,"date":"2024-02-14","description":"a description","account_id":2,"status_id": 2,"type_id": 2,"third_id":2,"category_id":1}`
 
+### Get Session info
+
+* `http://localhost:4242/?getSessionInfo={}&acessToken=`

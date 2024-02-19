@@ -1,12 +1,12 @@
 {
   "name": "gold_extension_background",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "build": "webpack --env app_mode=real --mode=production --config webpack.build.config.js",
     "build::watch": "webpack --watch --progress --env app_mode=real --mode=production --config webpack.build.config.js",
     "start": "webpack serve --env app_mode=axios --mode=development --config webpack.serve.config.js",
-    "jest": "jest --config=jest.config.js --collectCoverage --no-cache",
-    "jest:watch": "jest --config=jest.config.js --collectCoverage --watch --no-cache"
+    "test": "jest --config=jest.config.js --collectCoverage --no-cache",
+    "test:watch": "jest --config=jest.config.js --collectCoverage --watch --no-cache"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.237",

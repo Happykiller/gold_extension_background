@@ -1,11 +1,11 @@
 import { describe, expect, it } from '@jest/globals';
 import { mock, MockProxy } from 'jest-mock-extended';
 
-import { CODES } from '../common/codes';
-import { AuthUsecase } from './auth.usecase';
-import { Inversify } from '../common/inversify';
-import AjaxService from '../services/ajax/ajax.service';
-import ChromeService from '../services/chrome/chrome.service';
+import { CODES } from '@src/common/codes';
+import { Inversify } from '@src/common/inversify';
+import { AuthUsecase } from '@usecase/auth.usecase';
+import AjaxService from '@service/ajax/ajax.service';
+import ChromeService from '@service/chrome/chrome.service';
 
 describe('AuthUsecase', () => {
   const mockInversify: MockProxy<Inversify> = mock<Inversify>();
@@ -57,19 +57,28 @@ describe('AuthUsecase', () => {
       expect(response).toEqual({message: CODES.SUCCESS, data});
     });
 
-    it('should get response of auth', async () => {
+    it('should get response wrong credential', async () => {
       // arrange
-      mockAjaxService.post.mockResolvedValue({});
+      mockAjaxService.post.mockResolvedValue({
+        errors: [
+          {
+            message: 'Credentials wrong'
+          }
+        ]
+      });
       // act
       const response = await usecase.execute({
         login: 'login',
         password: 'password'
       });
       // assert
-      expect(response).toEqual({message: CODES.AUTH_FAIL_WRONG_CREDENTIAL});
+      expect(response).toEqual({
+        message: CODES.AUTH_FAIL_WRONG_CREDENTIAL,
+        error: 'Credentials wrong'
+      });
     });
 
-    it('should get response of auth', async () => {
+    it('should manage error', async () => {
       // arrange
       mockAjaxService.post.mockRejectedValue(new Error('error'));
       // act
