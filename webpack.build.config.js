@@ -17,8 +17,8 @@ module.exports = (env) => {
       extensions: ['.tsx', '.ts', '.js'],
       alias: {
         '@src': path.resolve(__dirname, 'src/'),
-        '@usecase': path.resolve(__dirname, 'src/usecases/'),
-        '@service': path.resolve(__dirname, 'src/services/'),
+        '@usecase': path.resolve(__dirname, 'src/usecase/'),
+        '@service': path.resolve(__dirname, 'src/service/'),
         '@repository': path.resolve(__dirname, 'src/repositorys/'),
         '@presentation': path.resolve(__dirname, 'src/presentation/'),
       },

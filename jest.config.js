@@ -10,8 +10,8 @@ module.exports = {
   ],
   moduleNameMapper: {
     "@src/(.*)": "<rootDir>/src/$1",
-    "@usecase/(.*)": "<rootDir>/src/usecases/$1",
-    "@service/(.*)": "<rootDir>/src/services/$1",
+    "@usecase/(.*)": "<rootDir>/src/usecase/$1",
+    "@service/(.*)": "<rootDir>/src/service/$1",
     "@repository/(.*)": "<rootDir>/src/repository/$1",
     "@presentation/(.*)": "<rootDir>/src/presentation/$1"
   },

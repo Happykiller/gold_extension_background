@@ -1,17 +1,16 @@
-import AjaxService from '../services/ajax/ajax.service';
-import WorkerService from '../services/worker/worker.service';
-import ChromeService from '../services/chrome/chrome.service';
-import { OtherRepository } from '../repository/other.repository';
-import { AjaxServiceReal } from '../services/ajax/ajax.service.real';
-import { AjaxServiceFake } from '../services/ajax/ajax.service.fake';
-import { WorkerServiceMock } from '../services/worker/worker.service.mock';
-import { ChromeServiceReal } from '../services/chrome/chrome.service.real';
-import { WorkerServiceChrome } from '../services/worker/worker.service.chrome';
-import { ChromeServiceBrowser } from '../services/chrome/chrome.service.browser';
 import { config } from '@src/config';
+import AjaxService from '@service/ajax/ajax.service';
+import WorkerService from '@service/worker/worker.service';
+import ChromeService from '@service/chrome/chrome.service';
+import { OtherRepository } from '@repository/other.repository';
+import { AjaxServiceReal } from '@service/ajax/ajax.service.real';
+import { AjaxServiceFake } from '@service/ajax/ajax.service.fake';
+import { WorkerServiceMock } from '@service/worker/worker.service.mock';
+import { ChromeServiceReal } from '@service/chrome/chrome.service.real';
+import { WorkerServiceChrome } from '@service/worker/worker.service.chrome';
+import { ChromeServiceBrowser } from '@service/chrome/chrome.service.browser';
 
 export class Inversify {
-
   ajaxService: AjaxService;
   workerService: WorkerService;
   chromeService: ChromeService;

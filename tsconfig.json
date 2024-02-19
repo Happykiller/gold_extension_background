@@ -33,8 +33,8 @@
     // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     "paths": {
       "@src/*": ["src/*"],
-      "@usecase/*": ["src/usecases/*"],
-      "@service/*": ["src/services/*"],
+      "@usecase/*": ["src/usecase/*"],
+      "@service/*": ["src/service/*"],
       "@repository/*": ["src/repository/*"],
       "@presentation/*": ["src/presentation/*"]
     },
