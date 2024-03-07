@@ -6,6 +6,7 @@ import { OrderResultModel } from '@presentation/model/order.model';
 import { GetSessionInfoUsecase } from '@usecase/getSessionInfo.usecase';
 import { GetSystemInfosUsecase } from '@usecase/getSystemInfos.usescase';
 import { CreateOperationUsecase } from '@usecase/create.operation.usecase';
+import { GetApiSystemInfoUsecase } from '@usecase/getApiSystemInfo.usescase';
 import { CreateOperationUsecaseDto } from '@usecase/dtos/create.operation.usecase.dto';
 
 async function bootstrap() {
@@ -46,6 +47,13 @@ async function bootstrap() {
       action: async (data: CreateOperationUsecaseDto):Promise<OrderResultModel> => {
         const createOperationUsecase: CreateOperationUsecase = new CreateOperationUsecase(inversify);
         return await createOperationUsecase.execute(data);
+      }
+    },
+    {
+      name: ORDERS.GET_API_SYSTEM_INFO,
+      action: async ():Promise<OrderResultModel> => {
+        const getApiSytemInfoUsecase: GetApiSystemInfoUsecase = new GetApiSystemInfoUsecase(inversify);
+        return await getApiSytemInfoUsecase.execute();
       }
     },
   ]);
