@@ -37,16 +37,16 @@ export class GetSessionInfoUsecase {
       this.inversify.chromeService.setCookie({
         url: 'https://api.gold.happykiller.net/',
         name: 'accessToken',
-        value: response.data.auth.accessToken
+        value: response.data.getSessionInfo.accessToken
       });
 
       return {
         message: CODES.SUCCESS,
-        data: response.data.auth
+        data: response.data.getSessionInfo
       }
     } catch (e: any) {
       return {
-        message: CODES.AUTH_FAIL_WRONG_CREDENTIAL,
+        message: CODES.GET_SESSION_INFO_FAIL,
         error: e.message
       }
     }
