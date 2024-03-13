@@ -1,6 +1,6 @@
 {
   "name": "gold_extension_background",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "scripts": {
     "build": "webpack --env app_mode=real --mode=production --config webpack.build.config.js",
     "build::watch": "webpack --watch --progress --env app_mode=real --mode=production --config webpack.build.config.js",
