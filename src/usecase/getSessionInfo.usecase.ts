@@ -15,16 +15,14 @@ export class GetSessionInfoUsecase {
           operationName: 'getSessionInfo',
           query: `query getSessionInfo {
             getSessionInfo {
-              accessToken
+              access_token
               id
               code
               name_first
               name_last
               description
               mail
-              creation
-              modification
-              language
+              role
             }
           }`
         }
@@ -33,12 +31,6 @@ export class GetSessionInfoUsecase {
       if(response.errors) {
         throw new Error(response.errors[0].message);
       }
-
-      this.inversify.chromeService.setCookie({
-        url: 'https://api.gold.happykiller.net/',
-        name: 'accessToken',
-        value: response.data.getSessionInfo.accessToken
-      });
 
       return {
         message: CODES.SUCCESS,

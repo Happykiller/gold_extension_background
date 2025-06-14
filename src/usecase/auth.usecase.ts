@@ -41,12 +41,6 @@ export class AuthUsecase {
         throw new Error(response.errors[0].message);
       }
 
-      this.inversify.chromeService.setCookie({
-        url: 'https://api.gold.happykiller.net/',
-        name: 'accessToken',
-        value: response.data.auth.accessToken
-      });
-
       return {
         message: CODES.SUCCESS,
         data: response.data.auth

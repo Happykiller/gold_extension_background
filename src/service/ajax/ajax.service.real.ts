@@ -10,10 +10,12 @@ export class AjaxServiceReal {
 
   async post(url:string, datas: any): Promise<any> {
     try {
-      const accessToken:ChromeServiceGetCookieModel = await this.inversify.chromeService.getCookie({
-        url: 'https://api.gold.happykiller.net/',
-        name: 'accessToken'
+      const cookie:ChromeServiceGetCookieModel = await this.inversify.chromeService.getCookie({
+        url: 'https://gold.happykiller.net/',
+        name: 'gold-storage'
       });
+
+      const storage = JSON.parse(decodeURIComponent(cookie.value));
 
       const response = await fetch(config.server?.url + url, {
         method: 'POST',
@@ -22,7 +24,7 @@ export class AjaxServiceReal {
         credentials: 'include', // include, *same-origin, omit
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken?.value??'Token'}`
+          'Authorization': `Bearer ${storage?.state.access_token??'Token'}`
         },
         body: JSON.stringify(datas)
       });
